@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Asset Uglifier</title>    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" media="all">
+   
+</head>
+<body>
+    <% include(view); %>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.form.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <% scripts.forEach(function(item) { %>
+    <script src="<%= item %>"></script>
+    <% }); %>
+</body>
+</html>
