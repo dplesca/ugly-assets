@@ -66,7 +66,7 @@
                     </div>
                     <div id="add-text" class="tab-pane">
                         <h4>Add some <%= type[0] %> text</h4>
-                        <form action="/js" method="post" class="form-horizontal span10 top15">
+                        <form action="/<%= type[0] %>" method="post" class="form-horizontal span10 top15">
                             <fieldset>
                                 <div class="control-group">
                                     <label class="control-label" for="code">Code</label>
@@ -79,7 +79,7 @@
                                 </div>
                             </fieldset>
                         </form>
-                        <div class="clearfix hidden span12" id="ugly-one">
+                        <div class="clearfix hidden span12" id="ugly-two">
                             <h4>Result - beware it's ugly</h4>
                             <textarea name="result" id="result-two" class="span10" rows="20"></textarea>
                         </div>

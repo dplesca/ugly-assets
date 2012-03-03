@@ -46,6 +46,12 @@ gh.post('/css', function(){
 			self.renderText( get_uglified_css(body) );
 		});
 	}
+	else if (self.params.code !== undefined) {
+		self.renderText( get_uglified_css(self.params.code) );
+	}
+	else {
+		self.renderText( get_uglified_css(self.params.file_content) );
+	}
 });
 
 gh.serve(8080);
