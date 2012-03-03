@@ -9,7 +9,96 @@
    
 </head>
 <body>
-    <% include(view); %>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">          
+                <a class="brand" href="#">ugly-assets</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li<% if(type[0] == 'js'){ %> class="active"<% } %>><a href="/">javascript</a></li>
+                        <li<% if(type[0] == 'css'){ %> class="active"<% } %>><a href="/css">css</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="page-header">
+                    <h2>Minimize your <%= type[1] %> assets with node</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h3>Use an url, textarea or drag&amp;drop <%= type[0] %> files</h3>
+            </div>
+        </div>
+        <div class="row top15">
+            <div class="span12">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#add-url" data-toggle="tab">From an URL</a></li>
+                    <li><a href="#add-text" data-toggle="tab">Just some <%= type[0] %> code in a textarea</a></li>
+                    <li><a href="#add-drag" data-toggle="tab">Drag &amp; Drop <%= type[0] %> files</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="active tab-pane" id="add-url">
+                        <h4>Add URL to the <%= type[0] %> file to be uglified</h4>
+                        <form action="/<%= type[0] %>" method="post" class="form-horizontal span8 top15">
+                            <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label" for="url">URL</label>
+                                    <div class="controls">
+                                        <input type="text" class="span5" id="url" name="url" placeholder="ex: http://example.com/what.<%= type[0] %>">
+                                        <p class="help-block">It should contain the http(s): part too.</p>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Parse and uglify</button>
+                                </div>
+                            </fieldset>                            
+                        </form>
+                        <div class="clearfix hidden span12" id="ugly-one">
+                            <h4>Result - beware it's ugly</h4>
+                            <textarea name="result" id="result" class="span11" rows="20"></textarea>
+                        </div>
+                    </div>
+                    <div id="add-text" class="tab-pane">
+                        <h4>Add some <%= type[0] %> text</h4>
+                        <form action="/js" method="post" class="form-horizontal span10 top15">
+                            <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label" for="code">Code</label>
+                                    <div class="controls">
+                                        <textarea name="code" id="code" class="span8" cols="30" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Parse and uglify</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <div class="clearfix hidden span12" id="ugly-one">
+                            <h4>Result - beware it's ugly</h4>
+                            <textarea name="result" id="result-two" class="span10" rows="20"></textarea>
+                        </div>
+                    </div>
+
+                    <div id="add-drag" class="tab-pane">
+                        <h4>Drag &amp; Drop <%= type[0] %> files</h4>
+                        <div id="drop_zone">
+                            Drop files here
+                        </div>
+                        <div class="clearfix hidden" id="ugly-three">
+                            <h4>Result - beware it's ugly</h4>
+                            <textarea name="result" id="result-three" class="span11" rows="20"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/jquery.form.js"></script>
     <script src="/js/bootstrap.min.js"></script>

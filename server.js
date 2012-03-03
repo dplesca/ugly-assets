@@ -1,13 +1,7 @@
 var gh = require('grasshopper'), request = require('request');
 
-gh.configure({
-    viewsDir: 'views',
-    layout: 'index'
-});
-
 function get_uglified_js(text){
-	var jsp = require("uglify-js").parser, pro = require("uglify-js").uglify;
-	var ast = jsp.parse(text);
+	var jsp = require("uglify-js").parser, pro = require("uglify-js").uglify, ast = jsp.parse(text);
 	ast = pro.ast_mangle(ast);
 	ast = pro.ast_squeeze(ast);
 	return pro.gen_code(ast);
@@ -20,11 +14,14 @@ function get_uglified_css(css){
 
 gh.get('/', function() {
 	this.model['scripts'] = ['/js/uglyjs.js'];
-    this.render('js');
+	this.model['type'] = ['js', 'javascript'];
+    this.render('index');
 });
 
 gh.get('/css', function() {
-    this.render('css');
+	this.model['scripts'] = ['/js/uglycss.js'];
+	this.model['type'] = ['css', 'css'];
+    this.render('index');
 });
 
 gh.post('/js', function (){
@@ -51,4 +48,4 @@ gh.post('/css', function(){
 	}
 });
 
-gh.serve(80);
+gh.serve(8080);
